@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Hungry App</string>
+    <string name="popular">Popular</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favourite">Favourite</string>
+    <string name="meal_time">Meal Time</string>
+    <string name="b_fast">B-fast</string>
+    <string name="launch">Launch</string>
+    <string name="dinner">Dinner</string>
+    <string name="dessert">Dessert</string>
+    <string name="cooking_time">Cooking Time</string>
+    <string name="serving_size">Serving Size</string>
+    <string name="select_a_size">Select a size</string>
+    <string name="diets">Diets</string>
+    <string name="ketogonic">Ketogonic</string>
+    <string name="lacto_vege">Lacto-Vege</string>
+    <string name="vegan">Vegan</string>
+    <string name="vegeterian">Vegeterian</string>
+    <string name="alergies">Alergies</string>
+    <string name="egg_free">Egg-free</string>
+    <string name="gluten_free">Gluten-free</string>
+    <string name="nut_free">Nut-free</string>
+    <string name="seafood_free">Seafood-free</string>
+    <string name="search_btn">SEARCH</string>
+</resources>
