@@ -28,6 +28,7 @@ class RecipeActivity : AppCompatActivity() {
             finish()
         }
 
+
         //user profile
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
         val userIcon: MenuItem = topAppBar.menu.findItem(R.id.user_icon)
@@ -43,11 +44,14 @@ class RecipeActivity : AppCompatActivity() {
 
         //bottom navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.page_2
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.page_1 -> {
                     startActivity(Intent(this, MainActivity::class.java))
+                    true
+                }
+                R.id.page_2 -> {
+                    startActivity(Intent(this, SearchActivity::class.java))
                     true
                 }
                 R.id.page_3 -> {
@@ -57,6 +61,7 @@ class RecipeActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
 
     }
 
@@ -102,7 +107,7 @@ class RecipeActivity : AppCompatActivity() {
 
         dishNameTextView.text = recipeDetails?.title
         cookTimeTextView.text = "${recipeDetails?.readyInMinutes} min"
-        ratingBar.rating = recipeDetails?.spoonacularScore ?: 0f
+        ratingBar.rating = recipeDetails?.spoonacularScore?.toFloat() ?: 0f
 
         // Set ingredients
         val ingredientsTextView: TextView = findViewById(R.id.ingredients_text_view)
@@ -112,5 +117,6 @@ class RecipeActivity : AppCompatActivity() {
         val instructionsTextView: TextView = findViewById(R.id.instructions_text_view)
         instructionsTextView.text = recipeDetails?.instructions
     }
+
 
 }

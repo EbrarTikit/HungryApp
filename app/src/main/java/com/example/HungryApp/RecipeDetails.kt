@@ -1,11 +1,14 @@
 package com.example.HungryApp
 
+import com.google.gson.annotations.SerializedName
+
 data class RecipeDetails(
     val id: Int,
     val title: String,
     val image: String,
     val readyInMinutes: Int,
-    val spoonacularScore: Float,
+    @SerializedName("spoonacularScore")
+    val spoonacularScore: Double,
     val instructions: String,
     val extendedIngredients: List<ExtendedIngredient>
 ) {

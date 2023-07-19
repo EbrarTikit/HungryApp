@@ -42,6 +42,14 @@ class MainActivity : AppCompatActivity() {
 
                     if (recipes != null) {
                         adapter = RecipeAdapter(recipes)
+                        adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
+                            override fun onItemClick(recipeId: Int) {
+                                // Handle item click here
+                                val intent = Intent(this@MainActivity, RecipeActivity::class.java)
+                                intent.putExtra("recipeId", recipeId)
+                                startActivity(intent)
+                            }
+                        })
                         recyclerView.adapter = adapter
                     }
                 }
@@ -51,6 +59,8 @@ class MainActivity : AppCompatActivity() {
                 // Handle API call failure
             }
         })
+
+
 
         //user profile
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
@@ -83,5 +93,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun onItemClick(recipeId: Int) {
+        val intent = Intent(this, RecipeActivity::class.java)
+        intent.putExtra("recipeId", recipeId)
+        startActivity(intent)
     }
 }
