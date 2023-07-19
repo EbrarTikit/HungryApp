@@ -23,4 +23,6 @@
     <string name="nut_free">Nut-free</string>
     <string name="seafood_free">Seafood-free</string>
     <string name="search_btn">SEARCH</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="how_to_cook">How to cook</string>
 </resources>

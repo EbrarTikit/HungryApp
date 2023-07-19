@@ -96,4 +96,5 @@ class SearchActivity : AppCompatActivity() {
         intent.putStringArrayListExtra("ingredients", ArrayList(ingredients))
         startActivity(intent)
     }
+
 }

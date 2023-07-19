@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SpoonacularApiClient {
@@ -24,7 +25,11 @@ interface SpoonacularApiClient {
         @Query("number") number: Int
     ): Call<List<Recipe>>
 
-
+    @GET("recipes/{recipeId}/information")
+    fun getRecipeDetails(
+        @Path("recipeId") recipeId: Int,
+        @Query("apiKey") apiKey: String
+    ): Call<RecipeDetails>
 
 
 

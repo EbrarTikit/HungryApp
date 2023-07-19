@@ -28,12 +28,23 @@ class RecipeListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Retrieve the ingredients from the intent
         val ingredients = intent.getStringArrayListExtra("ingredients")
         if (ingredients != null) {
             searchRecipes(ingredients)
         } else {
             Toast.makeText(this, "No ingredients provided", Toast.LENGTH_SHORT).show()
         }
+
+        adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
+            override fun onItemClick(recipeId: Int) {
+                // Handle recipe item click
+                val intent = Intent(this@RecipeListActivity, RecipeActivity::class.java)
+                intent.putExtra("recipeId", recipeId)
+                startActivity(intent)
+            }
+        })
+
 
         //user profile
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
