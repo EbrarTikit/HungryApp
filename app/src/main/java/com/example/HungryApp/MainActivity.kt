@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,4 +101,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("recipeId", recipeId)
         startActivity(intent)
     }
+
+
 }

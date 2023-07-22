@@ -25,4 +25,21 @@
     <string name="search_btn">SEARCH</string>
     <string name="ingredients">Ingredients</string>
     <string name="how_to_cook">How to cook</string>
+
+
+    <string name="profile">Profile</string>
+    <string name="sign_inn">SIGN IN!</string>
+    <string name="you_already_sign_in">You Signed In!</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_upp">Sign Up</string>
+    <string name="filter">Filter</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="emaill">Email</string>
+    <string name="passwordd">Password</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>
