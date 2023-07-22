@@ -2,12 +2,17 @@ package com.example.HungryApp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.widget.Button
+import android.widget.EdgeEffect
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,7 +24,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class LogInActivity : AppCompatActivity() {
 
-    private lateinit var textView: TextView
     private lateinit var client: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
 
@@ -66,6 +70,31 @@ class LogInActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             signIn()
         }
+
+        val forgotButton: Button = findViewById(R.id.log_in_forgotps)
+
+        forgotButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val view = layoutInflater.inflate(R.layout.dialog_forgot,null)
+            val userEmail = view.findViewById<EditText>(R.id.editBox)
+
+            builder.setView(view)
+            val dialog = builder.create()
+
+            view.findViewById<Button>(R.id.btnReset).setOnClickListener {
+                //pending
+                compareEmail(userEmail)
+                dialog.dismiss()
+            }
+            view.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+                dialog.dismiss()
+            }
+            if (dialog.window != null) {
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+            }
+            dialog.show()
+        }
+
 
         // Bottom navigation
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -139,5 +168,20 @@ class LogInActivity : AppCompatActivity() {
                     Toast.makeText(this, "Google sign-in failed.", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun compareEmail(email: EditText) {
+        if (email.text.toString().isEmpty()) {
+            return
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+            return
+        }
+
+        auth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this,"Check your email",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
