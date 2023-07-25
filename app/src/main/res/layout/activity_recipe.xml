@@ -89,7 +89,6 @@
                     android:layout_gravity="end|bottom"
                     android:layout_marginEnd="25dp"
                     android:numStars="5"
-                    android:rating="3"
                     android:stepSize="1"
                     android:isIndicator="true"/>
 

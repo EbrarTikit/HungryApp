@@ -3,7 +3,7 @@ package com.example.HungryApp
 import com.google.gson.annotations.SerializedName
 
 data class RecipeDetails(
-    val id: Int,
+    val id: Long,
     val title: String,
     val image: String,
     val readyInMinutes: Int,

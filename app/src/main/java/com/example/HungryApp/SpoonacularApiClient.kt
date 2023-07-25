@@ -27,7 +27,7 @@ interface SpoonacularApiClient {
 
     @GET("recipes/{recipeId}/information")
     fun getRecipeDetails(
-        @Path("recipeId") recipeId: Int,
+        @Path("recipeId") recipeId: Long,
         @Query("apiKey") apiKey: String
     ): Call<RecipeDetails>
 

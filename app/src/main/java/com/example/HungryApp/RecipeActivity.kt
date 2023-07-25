@@ -3,6 +3,7 @@ package com.example.HungryApp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -11,6 +12,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,8 +23,12 @@ class RecipeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recipe)
 
         val recipeId = intent.getIntExtra("recipeId", -1)
+        Log.d("RecipeActivity", "Recipe ID: $recipeId") // Add this line to check the recipeId value
+
+
+
         if (recipeId != -1) {
-            getRecipeDetails(recipeId)
+            getRecipeDetails(recipeId.toLong())
         } else {
             Toast.makeText(this, "Recipe ID not provided", Toast.LENGTH_SHORT).show()
             finish()
@@ -65,7 +71,7 @@ class RecipeActivity : AppCompatActivity() {
 
     }
 
-    private fun getRecipeDetails(recipeId: Int) {
+    private fun getRecipeDetails(recipeId: Long) {
         val apiKey = "5670f322efe241719f174f036883fb18" // Replace with your actual API key
 
         val client = SpoonacularApiClient.create()
@@ -74,6 +80,11 @@ class RecipeActivity : AppCompatActivity() {
             override fun onResponse(call: Call<RecipeDetails>, response: Response<RecipeDetails>) {
                 if (response.isSuccessful) {
                     val recipeDetails = response.body()
+                    Log.d("RecipeActivity", "API Response: ${Gson().toJson(recipeDetails)}")
+
+
+                    Log.d("RecipeActivity", "spoonacularScore: ${recipeDetails?.spoonacularScore}")
+
                     // Handle successful response and update UI with recipeDetails
                     updateUIWithRecipeDetails(recipeDetails)
                 } else {
@@ -107,7 +118,9 @@ class RecipeActivity : AppCompatActivity() {
 
         dishNameTextView.text = recipeDetails?.title
         cookTimeTextView.text = "${recipeDetails?.readyInMinutes} min"
+        Log.d("RecipeActivity", "Cook Time: ${recipeDetails?.readyInMinutes}")
         ratingBar.rating = recipeDetails?.spoonacularScore?.toFloat() ?: 0f
+        Log.d("RecipeActivity", "Rating: ${recipeDetails?.spoonacularScore?.toFloat() ?: 0f}")
 
         // Set ingredients
         val ingredientsTextView: TextView = findViewById(R.id.ingredients_text_view)
