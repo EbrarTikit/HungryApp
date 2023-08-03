@@ -43,4 +43,5 @@
     <string name="passwordd">Password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="get_started">Get Started</string>
+    <string name="my_favourite_list">My favourite list</string>
 </resources>
