@@ -2,6 +2,7 @@
 
 ## App Description
 Hungry is a recipe-finder app built with Kotlin.
+
 It is created by using Spoonacular API to fetch recipe data.
 
 ## App Features
