@@ -8,7 +8,7 @@ import com.example.HungryApp.databinding.ItemRecipeBinding
 
 
 
-class RecipeAdapter(private var recipes: List<Recipe> = emptyList()) :
+class RecipeAdapter(var recipes: List<Recipe> = emptyList()) :
     RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
 
@@ -45,6 +45,14 @@ class RecipeAdapter(private var recipes: List<Recipe> = emptyList()) :
                     itemClickListener?.onItemClick(recipe.id)
                 }
             }
+
+            binding.fav.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val recipe = recipes[position]
+                    itemClickListener?.onFavoriteButtonClick(recipe)
+                }
+            }
         }
 
         fun bind(recipe: Recipe) {
@@ -52,12 +60,16 @@ class RecipeAdapter(private var recipes: List<Recipe> = emptyList()) :
             Glide.with(binding.root)
                 .load(recipe.image)
                 .into(binding.imageRecipe)
+
+            // Update the favorite button state based on the isFavorite flag
+            binding.fav.isChecked = recipe.isFavorite
         }
     }
 
     // Define the click listener interface
     interface OnItemClickListener {
         fun onItemClick(recipeId: Int)
+        fun onFavoriteButtonClick(recipe: Recipe)
     }
 
     // Create a variable to hold the click listener

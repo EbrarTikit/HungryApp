@@ -6,10 +6,16 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.HungryApp.database.FavoriteRecipe
+import com.example.HungryApp.database.FavoriteRecipeDatabase
+import com.example.HungryApp.database.FavoriteRecipeDao
 
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,16 +48,7 @@ class MainActivity : AppCompatActivity() {
                     val recipes = recipeResponse?.recipes
 
                     if (recipes != null) {
-                        adapter = RecipeAdapter(recipes)
-                        adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
-                            override fun onItemClick(recipeId: Int) {
-                                // Handle item click here
-                                val intent = Intent(this@MainActivity, RecipeActivity::class.java)
-                                intent.putExtra("recipeId", recipeId)
-                                startActivity(intent)
-                            }
-                        })
-                        recyclerView.adapter = adapter
+                        adapter.setData(recipes)
                     }
                 }
             }
@@ -61,9 +58,39 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        GlobalScope.launch(Dispatchers.IO) {
+            val favoriteRecipesFlow = FavoriteRecipeDatabase.getDatabase(this@MainActivity).favoriteRecipeDao().getAllFavoriteRecipes()
+            favoriteRecipesFlow.collect { favoriteRecipes ->
+                val updatedRecipes = adapter.recipes.map { recipe ->
+                    recipe.copy(isFavorite = favoriteRecipes.any { it.id == recipe.id })
+                }
 
+                withContext(Dispatchers.Main) {
+                    adapter.setData(updatedRecipes)
+                }
+            }
+        }
 
-        //user profile
+        adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
+            override fun onItemClick(recipeId: Int) {
+                val intent = Intent(this@MainActivity, RecipeActivity::class.java)
+                intent.putExtra("recipeId", recipeId)
+                startActivity(intent)
+            }
+
+            override fun onFavoriteButtonClick(recipe: Recipe) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    val favoriteRecipeDao: FavoriteRecipeDao = FavoriteRecipeDatabase.getDatabase(this@MainActivity).favoriteRecipeDao()
+                    if (recipe.isFavorite) {
+                        favoriteRecipeDao.deleteFavoriteRecipe(FavoriteRecipe(recipe.id, recipe.title, recipe.image))
+                    } else {
+                        val favoriteRecipe = FavoriteRecipe(recipe.id, recipe.title, recipe.image)
+                        favoriteRecipeDao.insertFavoriteRecipe(favoriteRecipe)
+                    }
+                }
+            }
+        })
+
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
         val userIcon: MenuItem = topAppBar.menu.findItem(R.id.user_icon)
 
@@ -76,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             return@setOnMenuItemClickListener false
         }
 
-        //bottom navigation
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.page_1
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -92,15 +118,5 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-
     }
-
-    fun onItemClick(recipeId: Int) {
-        val intent = Intent(this, RecipeActivity::class.java)
-        intent.putExtra("recipeId", recipeId)
-        startActivity(intent)
-    }
-
-
 }

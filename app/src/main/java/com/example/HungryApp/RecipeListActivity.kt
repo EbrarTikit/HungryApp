@@ -43,7 +43,17 @@ class RecipeListActivity : AppCompatActivity() {
                 intent.putExtra("recipeId", recipeId)
                 startActivity(intent)
             }
+
+            override fun onFavoriteButtonClick(recipe: Recipe) {
+                // Handle favorite button click here
+                if (recipe.isFavorite) {
+                    Toast.makeText(this@RecipeListActivity, "Removed from favorites", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@RecipeListActivity, "Added to favorites", Toast.LENGTH_SHORT).show()
+                }
+            }
         })
+
 
 
         //user profile
