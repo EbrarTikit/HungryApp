@@ -28,7 +28,7 @@ class RecipeListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Retrieve the ingredients from the intent
+        // Retrieved the ingredients from the intent
         val ingredients = intent.getStringArrayListExtra("ingredients")
         if (ingredients != null) {
             searchRecipes(ingredients)
@@ -38,14 +38,12 @@ class RecipeListActivity : AppCompatActivity() {
 
         adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
             override fun onItemClick(recipeId: Int) {
-                // Handle recipe item click
                 val intent = Intent(this@RecipeListActivity, RecipeActivity::class.java)
                 intent.putExtra("recipeId", recipeId)
                 startActivity(intent)
             }
 
             override fun onFavoriteButtonClick(recipe: Recipe) {
-                // Handle favorite button click here
                 if (recipe.isFavorite) {
                     Toast.makeText(this@RecipeListActivity, "Removed from favorites", Toast.LENGTH_SHORT).show()
                 } else {
@@ -88,7 +86,7 @@ class RecipeListActivity : AppCompatActivity() {
     }
 
     private fun searchRecipes(ingredients: List<String>) {
-        val apiKey = "5670f322efe241719f174f036883fb18" // Replace with your actual API key
+        val apiKey = "5670f322efe241719f174f036883fb18"
 
         val client = SpoonacularApiClient.create()
         val query = ingredients.joinToString(",")
@@ -98,17 +96,14 @@ class RecipeListActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Recipe>>, response: Response<List<Recipe>>) {
                 if (response.isSuccessful) {
                     val recipes = response.body()
-                    // Handle successful response and update UI
                     adapter.setData(recipes)
                     adapter.notifyDataSetChanged()
                 } else {
-                    // Handle API error
                     Toast.makeText(this@RecipeListActivity, "Failed to load recipes: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
-                // Handle network or other failures
                 Toast.makeText(this@RecipeListActivity, "Failed to load recipes: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

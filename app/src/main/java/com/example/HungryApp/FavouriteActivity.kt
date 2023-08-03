@@ -30,7 +30,10 @@ class FavouriteActivity : AppCompatActivity() {
         adapter = RecipeAdapter(emptyList())
         recyclerView.adapter = adapter
 
-        // Fetch all favorite recipes from the database and set them in the adapter
+        /**
+         * Fetchs all favorite recipes from the database and set them in the adapter
+          */
+
         GlobalScope.launch(Dispatchers.IO) {
             val favoriteRecipesFlow = FavoriteRecipeDatabase.getDatabase(this@FavouriteActivity).favoriteRecipeDao().getAllFavoriteRecipes()
             favoriteRecipesFlow.collect { favoriteRecipes ->
@@ -80,7 +83,10 @@ class FavouriteActivity : AppCompatActivity() {
         }
 
 
-        //login
+        /**
+         * login
+         */
+
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
         val userIcon: MenuItem = topAppBar.menu.findItem(R.id.user_icon)
 
@@ -94,7 +100,10 @@ class FavouriteActivity : AppCompatActivity() {
         }
 
 
-        //bottom navigation
+        /**
+         *  bottom navigation
+         */
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.page_3
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->

@@ -43,6 +43,10 @@ class LogInActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_log_in)
 
+        /**
+         * Sign in with Google
+         */
+
         val withGoogleButton: Button = findViewById(R.id.with_google)
 
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -57,6 +61,10 @@ class LogInActivity : AppCompatActivity() {
             startActivityForResult(intent, 10001)
         }
 
+        /**
+         * Sign in or sign up
+         */
+
         auth = FirebaseAuth.getInstance()
 
         val signUpButton: Button = findViewById(R.id.sign_up)
@@ -70,6 +78,10 @@ class LogInActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             signIn()
         }
+
+        /**
+         * To reset Password
+         */
 
         val forgotButton: Button = findViewById(R.id.log_in_forgotps)
 
@@ -96,7 +108,10 @@ class LogInActivity : AppCompatActivity() {
         }
 
 
-        // Bottom navigation
+        /**
+         * Bottom navigation
+          */
+
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

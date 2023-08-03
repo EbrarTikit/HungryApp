@@ -22,10 +22,12 @@ class RecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
 
+        /**
+         * Getting recipe according to click
+         */
+
         val recipeId = intent.getIntExtra("recipeId", -1)
-        Log.d("RecipeActivity", "Recipe ID: $recipeId") // Add this line to check the recipeId value
-
-
+        Log.d("RecipeActivity", "Recipe ID: $recipeId")
 
         if (recipeId != -1) {
             getRecipeDetails(recipeId.toLong())
@@ -35,7 +37,10 @@ class RecipeActivity : AppCompatActivity() {
         }
 
 
-        //user profile
+        /**
+         * user profile
+         */
+
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
         val userIcon: MenuItem = topAppBar.menu.findItem(R.id.user_icon)
 
@@ -48,7 +53,10 @@ class RecipeActivity : AppCompatActivity() {
             return@setOnMenuItemClickListener false
         }
 
-        //bottom navigation
+        /**
+         * bottom navigation
+         */
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -85,17 +93,14 @@ class RecipeActivity : AppCompatActivity() {
 
                     Log.d("RecipeActivity", "spoonacularScore: ${recipeDetails?.spoonacularScore}")
 
-                    // Handle successful response and update UI with recipeDetails
                     updateUIWithRecipeDetails(recipeDetails)
                 } else {
-                    // Handle API error
                     Toast.makeText(this@RecipeActivity, "Failed to load recipe details: ${response.message()}", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
 
             override fun onFailure(call: Call<RecipeDetails>, t: Throwable) {
-                // Handle network or other failures
                 Toast.makeText(this@RecipeActivity, "Failed to load recipe details: ${t.message}", Toast.LENGTH_SHORT).show()
                 finish()
             }
@@ -103,15 +108,12 @@ class RecipeActivity : AppCompatActivity() {
     }
 
     private fun updateUIWithRecipeDetails(recipeDetails: RecipeDetails?) {
-        // Update the UI with the fetched recipe details
 
-        // Set image of dish
         val imageView: ImageView = findViewById(R.id.imageView)
-        // Load image using a library like Glide or Picasso
-        // For example, using Glide:
+
+        // Load image using a library with Glide
         Glide.with(this).load(recipeDetails?.image).into(imageView)
 
-        // Set dish name, cook time, and stars
         val dishNameTextView: TextView = findViewById(R.id.dish_name)
         val cookTimeTextView: TextView = findViewById(R.id.time_cook)
         val ratingBar: RatingBar = findViewById(R.id.ratingBar)
@@ -122,11 +124,9 @@ class RecipeActivity : AppCompatActivity() {
         ratingBar.rating = recipeDetails?.spoonacularScore?.toFloat() ?: 0f
         Log.d("RecipeActivity", "Rating: ${recipeDetails?.spoonacularScore?.toFloat() ?: 0f}")
 
-        // Set ingredients
         val ingredientsTextView: TextView = findViewById(R.id.ingredients_text_view)
         ingredientsTextView.text = recipeDetails?.getIngredientsFormatted()
 
-        // Set how to cook
         val instructionsTextView: TextView = findViewById(R.id.instructions_text_view)
         instructionsTextView.text = recipeDetails?.instructions
     }

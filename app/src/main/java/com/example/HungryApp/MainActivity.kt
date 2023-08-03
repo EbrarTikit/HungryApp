@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /**
+         * Fetch Recipies From Spoonacular Api
+         */
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = RecipeAdapter(emptyList())
@@ -58,6 +61,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        /**
+         * Adding favourite list with using ROOM
+         */
+
         GlobalScope.launch(Dispatchers.IO) {
             val favoriteRecipesFlow = FavoriteRecipeDatabase.getDatabase(this@MainActivity).favoriteRecipeDao().getAllFavoriteRecipes()
             favoriteRecipesFlow.collect { favoriteRecipes ->
@@ -70,6 +77,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+
 
         adapter.setOnItemClickListener(object : RecipeAdapter.OnItemClickListener {
             override fun onItemClick(recipeId: Int) {
@@ -91,6 +100,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        /**
+         * SIGN IN
+         */
+
         val topAppBar: MaterialToolbar = findViewById(R.id.topAppBar)
         val userIcon: MenuItem = topAppBar.menu.findItem(R.id.user_icon)
 
@@ -102,6 +115,11 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnMenuItemClickListener false
         }
+
+
+        /**
+         * Bottom Navigation according to current page
+         */
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.page_1

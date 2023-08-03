@@ -32,8 +32,6 @@ class RecipeAdapter(var recipes: List<Recipe> = emptyList()) :
     }
 
 
-
-
     inner class RecipeViewHolder(private val binding: ItemRecipeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -61,21 +59,18 @@ class RecipeAdapter(var recipes: List<Recipe> = emptyList()) :
                 .load(recipe.image)
                 .into(binding.imageRecipe)
 
-            // Update the favorite button state based on the isFavorite flag
+            // Updates the favorite button state based on the isFavorite flag
             binding.fav.isChecked = recipe.isFavorite
         }
     }
 
-    // Define the click listener interface
     interface OnItemClickListener {
         fun onItemClick(recipeId: Int)
         fun onFavoriteButtonClick(recipe: Recipe)
     }
 
-    // Create a variable to hold the click listener
     private var itemClickListener: OnItemClickListener? = null
 
-    // Setter method to set the click listener from the activity
     fun setOnItemClickListener(listener: OnItemClickListener) {
         itemClickListener = listener
     }

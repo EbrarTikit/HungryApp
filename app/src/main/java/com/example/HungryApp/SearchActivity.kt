@@ -12,7 +12,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 class SearchActivity : AppCompatActivity() {
-    // ...
 
     private lateinit var searchView: SearchView
     private lateinit var chipGroup: ChipGroup

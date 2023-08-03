@@ -53,7 +53,10 @@ class SignUpActivity : AppCompatActivity() {
             signUpWithEmailAndPassword()
         }
 
-        //bottom navigation
+        /**
+         * bottom navigation
+         */
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
