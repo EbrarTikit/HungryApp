@@ -19,8 +19,8 @@ It is created by using Spoonacular API to fetch recipe data.
 - ROOM 
 
 ## Features to be developed
- -Add filter options to search
- -Comment section for recipes
- -Scoring the recipe
+ - Add filter options to search
+ - Comment section for recipes
+ - Scoring the recipe
 
 ## Screenshots
