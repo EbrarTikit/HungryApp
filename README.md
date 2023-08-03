@@ -24,7 +24,9 @@ It is created by using Spoonacular API to fetch recipe data.
  - Scoring the recipe
 
 ## Screenshots
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/fav_ss.png)
+|:----------------------------------------:|:-----------------------------------------:|:----------------------------------------:|:-------------------------------------------------:|
+| ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_20230803_170516.png) | ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Home_ss.png) |![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/SignIn.png) | ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/ForgotPassword_ss.png) |
+![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_20230803_170516.png)
 ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Home_ss.png)
 ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/SignIn.png)
 ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/ForgotPassword_ss.png)
