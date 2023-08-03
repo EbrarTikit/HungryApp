@@ -42,4 +42,5 @@
     <string name="emaill">Email</string>
     <string name="passwordd">Password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="get_started">Get Started</string>
 </resources>
