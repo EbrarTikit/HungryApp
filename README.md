@@ -24,12 +24,27 @@ It is created by using Spoonacular API to fetch recipe data.
  - Scoring the recipe
 
 ## Screenshots
-|:----------------------------------------:|:-----------------------------------------:|:----------------------------------------:|:-------------------------------------------------:|
-| ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_20230803_170516.png) | ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Home_ss.png) |![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/SignIn.png) | ![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/ForgotPassword_ss.png) |
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_20230803_170516.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Home_ss.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/SignIn.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/ForgotPassword_ss.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_signout.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_search.png)
-![image](https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_favorite.png)
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_20230803_170516.png" alt="Image 1" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Home_ss.png" alt="Image 2" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/SignIn.png" alt="Image 3" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/ForgotPassword_ss.png" alt="Image 4" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_signout.png" alt="Image 5" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_search.png" alt="Image 6" style="width: 100%;">
+  </div>
+  <div style="flex: 33.33%; padding: 5px;">
+    <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_favorite.png" alt="Image 7" style="width: 100%;">
+  </div>
+</div>
+
