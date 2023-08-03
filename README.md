@@ -10,12 +10,12 @@ It is created by using Spoonacular API to fetch recipe data.
  -Recipes can be added to favorite list.
 
 ## Used Technologies
- -Retrofit
- -Gson
- -Glide
- -Square Up 
- -Firebase authentication
- -ROOM
+- Retrofit
+- Gson
+- Glide
+- Square Up
+- Firebase authentication
+- ROOM 
 
 ## Features to be developed
  -Add filter options to search
