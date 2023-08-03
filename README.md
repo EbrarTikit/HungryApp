@@ -40,7 +40,7 @@ It is created by using Spoonacular API to fetch recipe data.
 
 <!-- Third Row -->
 <p align="center">
-  <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_favorite.png" alt="Image 7" width="30%">
+  <img src="https://github.com/EbrarTikit/HungryApp/blob/master/Screenshots/Screenshot_fav.png" alt="Image 7" width="30%">
   <!-- Add other images here -->
 </p>
 
